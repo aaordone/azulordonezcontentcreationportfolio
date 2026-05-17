@@ -1,0 +1,245 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root { --cream: #F5F0E8; --ink: #1A1614; --warm-gray: #8A8279; --accent: #C4543A; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .portfolio { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); min-height: 100vh; }
+
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 320px; border-bottom: 1px solid var(--ink); }
+
+  .hero-left { padding: 3rem 2.5rem; border-right: 1px solid var(--ink); display: flex; flex-direction: column; justify-content: space-between; }
+
+  .eyebrow { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-gray); font-weight: 400; }
+
+  .hero-name { font-family: 'Playfair Display', Georgia, serif; font-size: 52px; font-weight: 400; line-height: 1.05; margin: 1rem 0 0; }
+
+  .hero-name em { font-style: italic; color: var(--accent); }
+
+  .hero-right { padding: 3rem 2.5rem; display: flex; flex-direction: column; justify-content: space-between; }
+
+  .hero-bio { font-size: 15px; line-height: 1.7; color: var(--warm-gray); max-width: 300px; font-weight: 300; }
+
+  .hero-stats { display: flex; gap: 2rem; margin-top: auto; }
+
+  .stat-item { display: flex; flex-direction: column; gap: 2px; }
+
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--ink); }
+
+  .stat-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-gray); }
+
+  .platforms-bar { display: flex; align-items: center; padding: 1rem 2.5rem; border-bottom: 1px solid var(--ink); }
+
+  .platform-tag { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.4rem 1.2rem; border: 1px solid var(--ink); border-radius: 999px; margin-right: 0.75rem; font-weight: 500; cursor: pointer; transition: background 0.2s, color 0.2s; }
+
+  .platform-tag:hover, .platform-tag.active { background: var(--ink); color: var(--cream); }
+
+  .section-label { padding: 1.5rem 2.5rem 1rem; display: flex; align-items: center; gap: 1rem; }
+
+  .section-title { font-family: 'Playfair Display', serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm-gray); }
+
+  .section-line { flex: 1; height: 1px; background: var(--ink); opacity: 0.15; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); }
+
+  .post-card { border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); cursor: pointer; transition: background 0.2s; overflow: hidden; position: relative; }
+
+  .post-card:nth-child(3n) { border-right: none; }
+  .post-card:hover { background: rgba(26,22,20,0.03); }
+
+  .post-thumb { width: 100%; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; flex-direction: column; gap: 6px; }
+
+  .post-emoji { font-size: 36px; }
+
+  .post-brand { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; opacity: 0.55; }
+
+  .post-overlay { position: absolute; inset: 0; background: var(--ink); opacity: 0; display: flex; align-items: center; justify-content: center; gap: 1.5rem; transition: opacity 0.2s; }
+
+  .post-card:hover .post-overlay { opacity: 0.85; }
+
+  .overlay-stat { display: flex; align-items: center; gap: 0.4rem; color: var(--cream); font-size: 14px; font-weight: 500; }
+
+  .post-info { padding: 1rem 1.25rem; border-top: 1px solid rgba(26,22,20,0.12); }
+
+  .post-caption { font-size: 13px; color: var(--ink); line-height: 1.5; margin-bottom: 0.5rem; font-weight: 400; }
+
+  .post-meta { display: flex; justify-content: space-between; align-items: center; }
+
+  .post-type-badge { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; background: rgba(26,22,20,0.07); color: var(--warm-gray); padding: 2px 8px; border-radius: 999px; }
+
+  .post-date { font-size: 11px; color: var(--warm-gray); }
+
+  .collab-tag { display: inline-block; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 6px; }
+
+  .contact-strip { border-top: 1px solid var(--ink); padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; }
+
+  .contact-left { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; }
+
+  .contact-links { display: flex; gap: 1.5rem; align-items: center; }
+
+  .contact-link { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink); padding-bottom: 2px; transition: color 0.2s; }
+
+  .contact-link:hover { color: var(--accent); border-color: var(--accent); }
+
+  .top-bar { background: var(--ink); color: var(--cream); padding: 0.6rem 1.5rem; font-size: 12px; letter-spacing: 0.05em; display: flex; align-items: center; justify-content: space-between; }
+
+  .color-pal { display: flex; gap: 4px; }
+
+  .color-swatch { width: 16px; height: 16px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: border-color 0.15s; }
+
+  .color-swatch.active { border-color: white; }
+
+  .b1 { background: #E8C4B0; } .b2 { background: #A8B89A; } .b3 { background: #B0BFD4; } .b4 { background: #D4B0C4; }
+</style>
+
+<div class="portfolio">
+
+  <div class="top-bar">
+    <span>Azul Ordonez · @azulaliciao</span>
+    <div class="color-pal">
+      <div class="color-swatch b1 active" onclick="setAccent('#C4543A',this)"></div>
+      <div class="color-swatch b2" onclick="setAccent('#3A6B4A',this)"></div>
+      <div class="color-swatch b3" onclick="setAccent('#2E5080',this)"></div>
+      <div class="color-swatch b4" onclick="setAccent('#7B3B6E',this)"></div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-left">
+      <span class="eyebrow">Content Creator · Portfolio</span>
+      <h1 class="hero-name">Azul <em>Ordonez</em></h1>
+    </div>
+    <div class="hero-right">
+      <p class="hero-bio">Phoenix-raised and desert-proud. I share authentic PHX life and lifestyle content — the real side of the Southwest, unfiltered.</p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">1.3K</span>
+          <span class="stat-label">Followers</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">11.3%</span>
+          <span class="stat-label">Avg. Eng.</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">801</span>
+          <span class="stat-label">Profile Views</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="platforms-bar">
+    <div class="platform-tag active" onclick="filterPosts('all',this)">All</div>
+    <div class="platform-tag" onclick="filterPosts('instagram',this)">Instagram</div>
+    <div class="platform-tag" onclick="filterPosts('tiktok',this)">TikTok</div>
+  </div>
+
+  <div class="section-label">
+    <span class="section-title">Featured Work</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="grid" id="post-grid"></div>
+
+  <div class="contact-strip">
+    <span class="contact-left">Let's connect.</span>
+    <div class="contact-links">
+      <a class="contact-link" href="https://instagram.com/azulaliciao" target="_blank">@azulaliciao</a>
+      <a class="contact-link" href="https://tiktok.com/@azulaliciao" target="_blank">TikTok</a>
+      <a class="contact-link" href="mailto:azulordonez26@gmail.com">Email</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const posts = [
+  {
+    platform: 'instagram', emoji: '🌵', bg: '#E8EAD8',
+    collab: '@urbanoutfitters',
+    caption: 'Joshua Tree from the digi cam — desert magic in every frame.',
+    likes: '128', comments: '—', date: 'Apr 29, 2026', type: 'Photo',
+    link: 'https://www.instagram.com/p/DXvO5Z5lNvE/'
+  },
+  {
+    platform: 'instagram', emoji: '🌸', bg: '#F2DDE8',
+    collab: '@juicycouture',
+    caption: 'Can a fragrance be your whole vibe? Just Moi says yes.',
+    likes: '63', comments: '—', date: 'Sep 30, 2025', type: 'Reel',
+    link: 'https://www.instagram.com/reel/DWS_WilBxQW/'
+  },
+  {
+    platform: 'instagram', emoji: '✨', bg: '#F5EDD4',
+    collab: '@lorealparis',
+    caption: 'Swipe, blend, glow — the Lumi Bronze stick is everything for a sun-kissed finish.',
+    likes: '40', comments: '—', date: 'Mar 24, 2026', type: 'Reel',
+    link: 'https://www.instagram.com/reel/DPO7XMbEX67/'
+  },
+  {
+    platform: 'tiktok', emoji: '🥪', bg: '#F2E8D6',
+    collab: 'PHX Food',
+    caption: 'The best sandwich in Phoenix is at Pane Bianco — sister spot to Pizzeria Bianco. Your next lunch spot, trust.',
+    likes: '1,683', comments: '—', date: 'Nov 7, 2025', type: 'TikTok',
+    link: 'https://www.tiktok.com/@azulaliciao'
+  },
+  {
+    platform: 'tiktok', emoji: '🌄', bg: '#DDE6EE',
+    collab: 'PHX Life',
+    caption: 'Phoenix getaway to Tucson — sometimes the best escapes are just down the road.',
+    likes: '3,012', comments: '—', date: 'Jun 17, 2025', type: 'TikTok',
+    link: 'https://www.tiktok.com/@azulaliciao'
+  },
+  {
+    platform: 'tiktok', emoji: '🦔', bg: '#DDE8D8',
+    collab: 'AZ Life',
+    caption: 'The best surprise ever — watch till the end for the freshest capybara experience in AZ.',
+    likes: '1,089', comments: '—', date: 'May 22, 2024', type: 'TikTok',
+    link: 'https://www.tiktok.com/@azulaliciao'
+  }
+];
+
+function renderPosts(filter) {
+  const grid = document.getElementById('post-grid');
+  const filtered = filter === 'all' ? posts : posts.filter(p => p.platform === filter);
+  grid.innerHTML = filtered.map((p, i) => `
+    <div class="post-card" style="animation: fadeIn 0.3s ease ${i*0.05}s both" onclick="window.open('${p.link}','_blank')">
+      <div class="post-thumb" style="background:${p.bg}">
+        <span class="post-emoji">${p.emoji}</span>
+        <span class="post-brand">${p.collab}</span>
+        <div class="post-overlay">
+          <div class="overlay-stat"><i class="ti ti-heart" aria-hidden="true"></i> ${p.likes}</div>
+          <div class="overlay-stat"><i class="ti ti-external-link" aria-hidden="true"></i> View</div>
+        </div>
+      </div>
+      <div class="post-info">
+        <span class="collab-tag">${p.collab}</span>
+        <p class="post-caption">${p.caption}</p>
+        <div class="post-meta">
+          <span class="post-type-badge">${p.type}</span>
+          <span class="post-date">${p.date}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterPosts(filter, el) {
+  document.querySelectorAll('.platform-tag').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderPosts(filter);
+}
+
+function setAccent(color, el) {
+  document.documentElement.style.setProperty('--accent', color);
+  document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+}
+
+const s = document.createElement('style');
+s.textContent = `@keyframes fadeIn { from {opacity:0;transform:translateY(8px)} to {opacity:1;transform:none} }`;
+document.head.appendChild(s);
+
+renderPosts('all');
+</script>
